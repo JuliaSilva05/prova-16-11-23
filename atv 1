@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> 
+
+struct esports{
+  char nome[20];
+  char jogo[15];
+  struct data{
+    int dia;
+    int mes;
+    int ano;
+  } data_comp [3];
+};
+
+int main(void) {
+
+  struct esports *listaCompeticoes = malloc(3);
+  int i;
+  int n = 1;
+  //int listaCompeticoes[i].data_comp[i].dia = 0;
+  struct data *data_comp = calloc(n, sizeof(struct data));
+  
+  for (int i = 0; i < 3; i++){
+    setbuf(stdin,NULL);
+    printf("Nome da competição %d: ",n);
+    fgets(listaCompeticoes[i].nome,20,stdin);
+    printf("Nome do jogo %d: ",n);
+    fgets(listaCompeticoes[i].jogo,15,stdin);
+    printf("Dia: ");
+    scanf("%d",&listaCompeticoes[i].data_comp[i].dia);
+    printf("Mês: ");
+    scanf("%d",&listaCompeticoes[i].data_comp[i].mes);
+    printf("Ano: ");
+    scanf("%d",&listaCompeticoes[i].data_comp[i].ano);
+    n++;
+  }
+
+  n = 1;
+  for (int i = 0; i < 3; i++){
+    printf("\n");
+    printf("Competição %d: %s",n,listaCompeticoes[i].nome);
+    printf("Jogo %d: %s",n,listaCompeticoes[i].jogo);
+    printf("Data: %d/%d/%d\n",listaCompeticoes[i].data_comp[i].dia,listaCompeticoes[i].data_comp[i].mes,listaCompeticoes[i].data_comp[i].ano);
+    printf("\n");
+    n++;
+  }
+
+
+  
+  return 0;
+}
