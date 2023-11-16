@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> 
+
+struct esports{
+  char nome[20];
+  char jogo[15];
+  struct data{
+    int dia;
+    int mes;
+    int ano;
+  } data_comp [10];
+};
+
+void inserir(struct esports *listaCompeticoes, int i, int n){
+  setbuf(stdin,NULL);
+  printf("Nome da competição %d: ",n);
+  fgets(listaCompeticoes[i].nome,20,stdin);
+  printf("Nome do jogo %d: ",n);
+  fgets(listaCompeticoes[i].jogo,15,stdin);
+  printf("Dia: ");
+  scanf("%d",&listaCompeticoes[i].data_comp[i].dia);
+  printf("Mês: ");
+  scanf("%d",&listaCompeticoes[i].data_comp[i].mes);
+  printf("Ano: ");
+  scanf("%d",&listaCompeticoes[i].data_comp[i].ano);
+}
+
+void imprimir(struct esports *listaCompeticoes, int a, int n){
+  int i;
+  printf("\n");
+  printf("Competição %d: %s",n,listaCompeticoes[i].nome);
+  printf("Jogo %d: %s",n,listaCompeticoes[i].jogo);
+  printf("Data: %d/%d/%d\n",listaCompeticoes[i].data_comp[i].dia,listaCompeticoes[i].data_comp[i].mes,listaCompeticoes[i].data_comp[i].ano);
+  printf("\n");
+}
+
+int main(void) {
+
+  struct esports *listaCompeticoes = malloc(1);
+
+  int n = 1,i=0;
+
+  
+  inserir(listaCompeticoes,i,n);
+
+  
+  int opcao,comparar = 0;
+  char buscar[20];
+
+  do{
+    printf("Digite 1 para adicionar uma nova\n");
+    printf("Digite 2 para remover uma\n");
+    printf("Digite 3 para buscar competições por jogo\n");
+    printf("Digite 4 para alocar memória\n");
+    printf("Digite 5 para imprimir lista de competições\n");
+    printf("Digite 6 para sair\n");
+    scanf("%d",&opcao);
+
+    switch (opcao){
+      case 1:
+        printf("Adicionar competição\n");
+        
+        i=1;
+        setbuf(stdin,NULL);
+        printf("Nome da competição %d: ",n);
+        fgets(listaCompeticoes[i].nome,20,stdin);
+        printf("Nome do jogo %d: ",n);
+        fgets(listaCompeticoes[i].jogo,15,stdin);
+        printf("Dia: ");
+        scanf("%d",&listaCompeticoes[i].data_comp[i].dia);
+        printf("Mês: ");
+        scanf("%d",&listaCompeticoes[i].data_comp[i].mes);
+        printf("Ano: ");
+        scanf("%d",&listaCompeticoes[i].data_comp[i].ano);
+        n++;
+        
+        break;
+      case 2:
+        printf("Remover\n");
+        break;
+      case 3:
+        printf("Digite qual jogo deseja pesquisar: ");
+        setbuf(stdin,NULL);
+        fgets(buscar,20,stdin);
+        for (int i = 0; i<3;i++){
+          if (strcmp(buscar,listaCompeticoes[i].jogo) == 0){
+            printf("Competição %d: %s",i+1,listaCompeticoes[i].nome);
+            
+          }
+        
+        }
+        break;
+      case 4:
+        printf("Alocar memória\n");
+        listaCompeticoes = realloc(listaCompeticoes,3);
+        break;
+      
+      case 5:
+        printf("\nImprimir lista de competições\n");
+        n=1;
+        for (i = 0; i < 3; i++){
+          printf("\n");
+          printf("Competição %d: %s\n",n,listaCompeticoes[i].nome);
+          printf("Jogo %d: %s",n,listaCompeticoes[i].jogo);
+          printf("Data: %d/%d/%d\n",listaCompeticoes[i].data_comp[i].dia,listaCompeticoes[i].data_comp[i].mes,listaCompeticoes[i].data_comp[i].ano);
+          printf("\n");
+          n++;
+        }
+                
+        
+        break;
+        
+    }
+    
+  } while (opcao != 6);
+
+  free(listaCompeticoes);
+  listaCompeticoes = NULL;
+
+
+  return 0;
+}
